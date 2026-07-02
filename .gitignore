@@ -22,6 +22,11 @@
 
 # misc
 .DS_Store
+nul
+
+# local tooling / terminals
+/mcps/
+/terminals/
 *.pem
 
 # debug
