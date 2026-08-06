@@ -19,12 +19,12 @@ export function RAGVisual({ className }: { className?: string }) {
           </span>
         </div>
 
-        <div className="p-5 md:p-6">
-          <RAGPipeline />
+        <div className="p-4 md:p-5">
+          <RAGPipeline className="mb-1" />
 
           {/* Chat mockup */}
           <motion.div
-            className="mt-6 space-y-3"
+            className="mt-4 space-y-3 border-t border-border/60 pt-4"
             initial={reducedMotion ? {} : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
