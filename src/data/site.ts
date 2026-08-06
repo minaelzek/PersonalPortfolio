@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Mina",
-  fullName: "Mina A.",
+  fullName: "Mina E.",
   title: "Forward Deployed Engineer",
   tagline: "From prototype to production—with the people who use it.",
   description:
