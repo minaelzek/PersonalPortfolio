@@ -13,13 +13,21 @@ export const siteConfig = {
   ogImage: "/og-image.png",
   location: "Greater Toronto Area",
   openTo:
-    "Forward Deployed Engineer, Solutions Engineer, and Technical Consultant roles (Hybrid / On-site)",
+    "Open to Forward Deployed Engineer, Solutions Engineer, and Technical Consultant roles · Hybrid / on-site · GTA",
 };
 
+/** Primary nav — short list for fast scanning (recruiter + casual viewer) */
 export const navLinks = [
-  { label: "About", href: "#about" },
+  { label: "Work", href: "#work" },
   { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Stack", href: "#stack" },
-  { label: "Credentials", href: "#credentials" },
+  { label: "About", href: "#about" },
+  { label: "Contact", href: "#contact" },
+];
+
+/** Hero proof strip — what a recruiter should see in 5 seconds */
+export const heroProof = [
+  { value: "94%", label: "Clinical CV accuracy", detail: "from 50% baseline" },
+  { value: "Live", label: "Shipped product", detail: "playundercut.com" },
+  { value: "FDE", label: "Plant + clinic + software", detail: "stakeholder-facing" },
+  { value: "GTA", label: "Based in Canada", detail: "hybrid / on-site" },
 ];

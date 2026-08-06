@@ -1,6 +1,5 @@
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
-import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { MouseGlow } from "@/components/layout/MouseGlow";
 import { LoadingScreen } from "@/components/layout/LoadingScreen";
 import { Hero } from "@/components/sections/Hero";
@@ -11,21 +10,25 @@ import { TechStack } from "@/components/sections/TechStack";
 import { Credentials } from "@/components/sections/Credentials";
 import { Contact } from "@/components/sections/Contact";
 
+/**
+ * Recruiter scan path:
+ * Hero (who + proof) → Work (evidence) → Experience → About/Stack/Creds → Contact
+ * Viewer path is the same but with deeper case studies under Work.
+ */
 export default function Home() {
   return (
     <>
       <LoadingScreen />
-      <ScrollProgress />
       <MouseGlow />
       <div className="noise-overlay" aria-hidden="true" />
 
       <Navigation />
 
-      <main id="main-content">
+      <main id="main-content" className="pt-14 md:pt-16">
         <Hero />
-        <About />
-        <Experience />
         <ProjectShowcase />
+        <Experience />
+        <About />
         <TechStack />
         <Credentials />
         <Contact />

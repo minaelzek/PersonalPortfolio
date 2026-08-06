@@ -35,15 +35,14 @@ export function Contact() {
             id="contact-heading"
             className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-foreground leading-[1.15] mb-4"
           >
-            Let&apos;s build something remarkable
+            Let&apos;s talk about the role
           </h2>
 
           <p className="text-base md:text-lg text-muted max-w-xl mx-auto mb-2 leading-relaxed">
             {siteConfig.openTo}
           </p>
           <p className="text-sm text-muted-foreground max-w-lg mx-auto mb-6">
-            Based in the {siteConfig.location}. Happy to talk FDE, solutions
-            engineering, or technical consulting.
+            Fastest path: email or LinkedIn. Resume is one click in the header.
           </p>
 
           <a
@@ -55,9 +54,12 @@ export function Contact() {
 
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Button href={`mailto:${siteConfig.email}`} variant="primary" size="lg">
-              Send an email
+              Email me
             </Button>
-            <Button href={siteConfig.linkedin} variant="secondary" size="lg" external>
+            <Button href={siteConfig.resume} variant="secondary" size="lg" external>
+              Resume PDF
+            </Button>
+            <Button href={siteConfig.linkedin} variant="ghost" size="lg" external>
               LinkedIn
             </Button>
             <Button href={siteConfig.github} variant="ghost" size="lg" external>

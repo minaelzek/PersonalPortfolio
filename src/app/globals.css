@@ -37,7 +37,8 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 6.5rem;
+  /* Single fixed header (h-14 / h-16) + breathing room */
+  scroll-padding-top: 5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -161,10 +162,10 @@ body {
   max-width: 62ch;
 }
 
-/* Anchor targets clear fixed header + sticky project pills */
+/* Anchor targets clear the single fixed header */
 section[id],
 article[id] {
-  scroll-margin-top: 6.5rem;
+  scroll-margin-top: 5rem;
 }
 
 /* Sakura petal animation */

@@ -12,8 +12,8 @@ export function Experience() {
       <div className="container-width">
         <SectionHeading
           label="Experience"
-          title="Where I've built"
-          description="RLHF and model evaluation at Outlier AI, plus independent forward-deployed work across clinical AI, industrial automation, and full-stack products."
+          title="Roles and engagements"
+          description="LLM evaluation at Outlier AI, plus independent forward-deployed work across clinical AI, industrial automation, and shipped products."
         />
 
         <div className="relative">

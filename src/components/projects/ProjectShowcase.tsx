@@ -1,103 +1,88 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { projects } from "@/data/projects";
 import { ProjectSection } from "./ProjectSection";
 import { cn } from "@/lib/utils";
 
+/**
+ * Selected work — recruiter-first:
+ * 1. Scannable index (who / what / live?) in one glance
+ * 2. Deep-dive case studies below (no second sticky header)
+ */
 export function ProjectShowcase() {
-  const [activeProject, setActiveProject] = useState(projects[0].slug);
-  const navRef = useRef<HTMLElement>(null);
-  const chipRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
-
-  useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-
-    projects.forEach((project) => {
-      const el = document.getElementById(project.slug);
-      if (!el) return;
-
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setActiveProject(project.slug);
-          }
-        },
-        { rootMargin: "-35% 0px -45% 0px", threshold: 0 }
-      );
-
-      observer.observe(el);
-      observers.push(observer);
-    });
-
-    return () => observers.forEach((o) => o.disconnect());
-  }, []);
-
-  // Keep active chip visible in the horizontal scroller
-  useEffect(() => {
-    const chip = chipRefs.current[activeProject];
-    if (!chip) return;
-    chip.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "center",
-    });
-  }, [activeProject]);
+  const reducedMotion = useReducedMotion();
 
   return (
     <section
-      id="projects"
-      className="relative pb-[clamp(4rem,8vw,7rem)]"
-      aria-labelledby="projects-heading"
+      id="work"
+      className="section-padding relative"
+      aria-labelledby="work-heading"
     >
-      <div className="container-width pt-[clamp(4rem,8vw,7rem)]">
+      <div className="container-width">
         <SectionHeading
-          label="Projects"
-          title="Products I've shipped"
-          description="Industrial multi-agent AI, clinical computer vision, plant-floor automation, live F1 fantasy, and privacy-first journaling."
+          label="Selected work"
+          title="Products and systems I've shipped"
+          description="Clinical CV, industrial multi-agent AI, plant-floor automation, and consumer products in production. Pick a case study or scroll for the full story."
         />
-      </div>
 
-      {/* Sticky project jump nav — scrolls horizontally, works on mobile */}
-      <div className="sticky top-16 md:top-[4.5rem] z-30 mb-2 border-y border-border/60 bg-background/80 backdrop-blur-xl">
-        <div className="container-width">
-          <nav
-            ref={navRef}
-            className="flex gap-1.5 overflow-x-auto scrollbar-none py-2.5 -mx-1 px-1"
-            aria-label="Jump to project"
-          >
-            {projects.map((project) => {
-              const active = activeProject === project.slug;
-              return (
-                <a
-                  key={project.slug}
-                  ref={(node) => {
-                    chipRefs.current[project.slug] = node;
-                  }}
-                  href={`#${project.slug}`}
-                  className={cn(
-                    "relative shrink-0 px-3.5 py-1.5 text-sm rounded-full transition-colors whitespace-nowrap",
-                    active
-                      ? "text-foreground"
-                      : "text-muted hover:text-foreground"
+        {/* Work index — replaces sticky project pills */}
+        <motion.div
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-14 md:mb-16"
+          initial={reducedMotion ? false : { opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.45 }}
+        >
+          {projects.map((project, i) => (
+            <a
+              key={project.id}
+              href={`#${project.slug}`}
+              className={cn(
+                "group relative glass rounded-xl p-4 md:p-5 transition-colors duration-200",
+                "hover:border-white/15 hover:bg-white/[0.045] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              )}
+              style={{
+                // subtle accent rail
+                boxShadow: `inset 3px 0 0 0 ${project.accent}99`,
+              }}
+            >
+              <div className="flex items-start justify-between gap-3 mb-2">
+                <span className="text-[11px] font-mono text-muted-foreground tabular-nums">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="flex items-center gap-1.5 shrink-0">
+                  {project.featured && (
+                    <span
+                      className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded border"
+                      style={{
+                        color: project.accent,
+                        borderColor: `${project.accent}55`,
+                      }}
+                    >
+                      Featured
+                    </span>
                   )}
-                  aria-current={active ? "true" : undefined}
-                >
-                  {project.shortName}
-                  {active && (
-                    <motion.span
-                      layoutId="project-nav-indicator"
-                      className="absolute inset-0 rounded-full bg-white/[0.08] -z-10"
-                      transition={{ type: "spring", stiffness: 400, damping: 32 }}
-                    />
+                  {project.live && (
+                    <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
+                      Live
+                    </span>
                   )}
-                </a>
-              );
-            })}
-          </nav>
-        </div>
+                </div>
+              </div>
+              <h3 className="text-base font-semibold text-foreground group-hover:text-white transition-colors">
+                {project.name}
+              </h3>
+              <p className="mt-1 text-sm text-muted leading-snug line-clamp-2">
+                {project.tagline}
+              </p>
+              <p className="mt-3 text-xs text-muted-foreground font-mono truncate">
+                {project.techStack.slice(0, 3).join(" · ")}
+              </p>
+            </a>
+          ))}
+        </motion.div>
       </div>
 
       <div>

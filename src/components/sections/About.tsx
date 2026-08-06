@@ -60,8 +60,8 @@ export function About() {
       <div className="container-width">
         <SectionHeading
           label="About"
-          title="Production systems, real stakeholders"
-          description="Forward Deployed Engineer focused on taking solutions from prototype to scalable production—working directly with domain experts to deliver measurable impact."
+          title="How I work"
+          description="I sit with the people who use the system—clinicians, process engineers, operators—and own delivery from prototype through production."
         />
 
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
