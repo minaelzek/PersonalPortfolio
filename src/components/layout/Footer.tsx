@@ -4,19 +4,19 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border py-12" role="contentinfo">
-      <div className="container-width flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="flex flex-col items-center md:items-start gap-2">
+    <footer className="border-t border-border py-8 md:py-10" role="contentinfo">
+      <div className="container-width flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="flex flex-col items-center sm:items-start gap-1">
           <span className="text-sm font-semibold">
             {siteConfig.fullName}
             <span className="text-accent">.</span>
           </span>
-          <p className="text-sm text-muted">
-            Built with intention. Designed for clarity.
+          <p className="text-xs text-muted-foreground">
+            &copy; {year} · Built with intention
           </p>
         </div>
 
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-5">
           <a
             href={siteConfig.github}
             target="_blank"
@@ -42,10 +42,6 @@ export function Footer() {
             Email
           </a>
         </div>
-
-        <p className="text-xs text-muted-foreground">
-          &copy; {year} {siteConfig.fullName}
-        </p>
       </div>
     </footer>
   );

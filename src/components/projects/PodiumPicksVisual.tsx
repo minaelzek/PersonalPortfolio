@@ -75,7 +75,7 @@ export function PodiumPicksVisual({ className }: { className?: string }) {
 
       {/* Performance badge */}
       <motion.div
-        className="absolute -bottom-4 -right-4 glass rounded-xl px-4 py-3 shadow-lg"
+        className="absolute bottom-3 right-3 glass rounded-lg px-3 py-2 shadow-lg pointer-events-none"
         initial={reducedMotion ? {} : { opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}

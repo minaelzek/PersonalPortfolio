@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { projects } from "@/data/projects";
@@ -9,6 +9,8 @@ import { cn } from "@/lib/utils";
 
 export function ProjectShowcase() {
   const [activeProject, setActiveProject] = useState(projects[0].slug);
+  const navRef = useRef<HTMLElement>(null);
+  const chipRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
@@ -23,7 +25,7 @@ export function ProjectShowcase() {
             setActiveProject(project.slug);
           }
         },
-        { rootMargin: "-30% 0px -50% 0px" }
+        { rootMargin: "-35% 0px -45% 0px", threshold: 0 }
       );
 
       observer.observe(el);
@@ -33,44 +35,67 @@ export function ProjectShowcase() {
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
+  // Keep active chip visible in the horizontal scroller
+  useEffect(() => {
+    const chip = chipRefs.current[activeProject];
+    if (!chip) return;
+    chip.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }, [activeProject]);
+
   return (
-    <section id="projects" className="section-padding relative" aria-labelledby="projects-heading">
-      <div className="container-width">
+    <section
+      id="projects"
+      className="relative pb-[clamp(4rem,8vw,7rem)]"
+      aria-labelledby="projects-heading"
+    >
+      <div className="container-width pt-[clamp(4rem,8vw,7rem)]">
         <SectionHeading
           label="Projects"
           title="Products I've shipped"
-          description="Industrial multi-agent AI, clinical computer vision, food & beverage PLC/HMI, live F1 fantasy, and privacy-first journaling."
+          description="Industrial multi-agent AI, clinical computer vision, plant-floor automation, live F1 fantasy, and privacy-first journaling."
         />
       </div>
 
-      {/* Sticky project navigation */}
-      <div className="sticky top-20 z-30 mb-8 hidden lg:block">
+      {/* Sticky project jump nav — scrolls horizontally, works on mobile */}
+      <div className="sticky top-16 md:top-[4.5rem] z-30 mb-2 border-y border-border/60 bg-background/80 backdrop-blur-xl">
         <div className="container-width">
           <nav
-            className="glass rounded-full px-2 py-2 inline-flex gap-1"
-            aria-label="Project navigation"
+            ref={navRef}
+            className="flex gap-1.5 overflow-x-auto scrollbar-none py-2.5 -mx-1 px-1"
+            aria-label="Jump to project"
           >
-            {projects.map((project) => (
-              <a
-                key={project.slug}
-                href={`#${project.slug}`}
-                className={cn(
-                  "relative px-5 py-2 text-sm rounded-full transition-colors",
-                  activeProject === project.slug
-                    ? "text-foreground"
-                    : "text-muted hover:text-foreground"
-                )}
-              >
-                {project.name}
-                {activeProject === project.slug && (
-                  <motion.span
-                    layoutId="project-nav-indicator"
-                    className="absolute inset-0 rounded-full bg-white/[0.06] -z-10"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </a>
-            ))}
+            {projects.map((project) => {
+              const active = activeProject === project.slug;
+              return (
+                <a
+                  key={project.slug}
+                  ref={(node) => {
+                    chipRefs.current[project.slug] = node;
+                  }}
+                  href={`#${project.slug}`}
+                  className={cn(
+                    "relative shrink-0 px-3.5 py-1.5 text-sm rounded-full transition-colors whitespace-nowrap",
+                    active
+                      ? "text-foreground"
+                      : "text-muted hover:text-foreground"
+                  )}
+                  aria-current={active ? "true" : undefined}
+                >
+                  {project.shortName}
+                  {active && (
+                    <motion.span
+                      layoutId="project-nav-indicator"
+                      className="absolute inset-0 rounded-full bg-white/[0.08] -z-10"
+                      transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                    />
+                  )}
+                </a>
+              );
+            })}
           </nav>
         </div>
       </div>

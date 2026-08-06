@@ -70,7 +70,7 @@ export function SeedJournalVisual({ className }: { className?: string }) {
 
       {/* Growth streak badge */}
       <motion.div
-        className="absolute -top-4 -left-4 glass rounded-xl px-4 py-3 shadow-lg"
+        className="absolute top-3 left-3 glass rounded-lg px-3 py-2 shadow-lg pointer-events-none"
         initial={reducedMotion ? {} : { opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}

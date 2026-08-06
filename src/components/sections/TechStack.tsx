@@ -17,30 +17,29 @@ export function TechStack() {
           align="center"
         />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
           {techStack.map((category, i) => (
             <motion.div
               key={category.name}
-              className="glass rounded-2xl p-6 transition-all duration-300 hover:border-white/12 hover:bg-white/[0.04]"
-              initial={reducedMotion ? false : { opacity: 0, y: 24 }}
+              className="glass rounded-xl p-5 transition-colors duration-200 hover:border-white/12 hover:bg-white/[0.04]"
+              initial={reducedMotion ? false : { opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{
-                duration: 0.5,
-                delay: i * 0.05,
+                duration: 0.4,
+                delay: Math.min(i * 0.04, 0.24),
                 ease: [0.25, 0.4, 0.25, 1],
               }}
             >
-              <h3 className="text-xs font-medium tracking-widest uppercase text-accent mb-4">
+              <h3 className="text-[11px] font-medium tracking-widest uppercase text-accent mb-3">
                 {category.name}
               </h3>
-              <ul className="space-y-2.5" role="list">
+              <ul className="flex flex-wrap gap-1.5" role="list">
                 {category.items.map((item) => (
                   <li
                     key={item}
-                    className="text-sm text-foreground/90 font-medium flex items-center gap-2"
+                    className="text-xs sm:text-sm text-foreground/90 px-2 py-1 rounded-md bg-white/[0.04] border border-border"
                   >
-                    <span className="w-1.5 h-1.5 rounded-sm bg-accent/40 shrink-0" aria-hidden="true" />
                     {item}
                   </li>
                 ))}

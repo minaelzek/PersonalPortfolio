@@ -2,135 +2,180 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
-import { TextReveal } from "@/components/ui/TextReveal";
 import { siteConfig } from "@/data/site";
 
 export function Hero() {
   const reducedMotion = useReducedMotion();
+  const ease = [0.25, 0.4, 0.25, 1] as const;
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-[min(100svh,900px)] flex items-center justify-center overflow-hidden"
       aria-labelledby="hero-heading"
     >
       <div className="absolute inset-0 grid-background" aria-hidden="true" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" aria-hidden="true" />
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[min(80vw,560px)] h-[min(50vw,360px)] rounded-full bg-accent/10 blur-[100px] pointer-events-none"
+        aria-hidden="true"
+      />
 
-      {/* Floating particles */}
       {!reducedMotion && (
         <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-          {Array.from({ length: 12 }).map((_, i) => (
+          {Array.from({ length: 8 }).map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 rounded-full bg-accent/20"
+              className="absolute w-1 h-1 rounded-full bg-accent/25"
               style={{
-                left: `${10 + (i * 7) % 80}%`,
-                top: `${15 + (i * 11) % 70}%`,
+                left: `${12 + ((i * 11) % 76)}%`,
+                top: `${18 + ((i * 13) % 64)}%`,
               }}
               animate={{
-                y: [0, -30, 0],
-                opacity: [0.2, 0.6, 0.2],
+                y: [0, -20, 0],
+                opacity: [0.15, 0.45, 0.15],
               }}
               transition={{
-                duration: 4 + i * 0.5,
+                duration: 5 + i * 0.4,
                 repeat: Infinity,
                 ease: "easeInOut",
-                delay: i * 0.3,
+                delay: i * 0.25,
               }}
             />
           ))}
         </div>
       )}
 
-      <div className="container-width relative z-10 pt-32 pb-20">
+      <div className="container-width relative z-10 pt-28 pb-16 md:pt-32 md:pb-20">
         <motion.div
-          initial={reducedMotion ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1 }}
-          className="mb-8"
+          initial={reducedMotion ? false : { opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.05, ease }}
+          className="mb-6"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-muted">
-            <span className="w-2 h-2 rounded-full bg-accent pulse-glow" aria-hidden="true" />
-            Open to roles · Greater Toronto Area
+          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass text-sm text-muted">
+            <span
+              className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0"
+              aria-hidden="true"
+            />
+            Open to roles · {siteConfig.location}
           </span>
         </motion.div>
 
-        <h1
-          id="hero-heading"
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight leading-[1.05] max-w-5xl"
+        <motion.p
+          className="text-sm font-medium tracking-wide text-accent mb-3"
+          initial={reducedMotion ? false : { opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.1, ease }}
         >
-          <TextReveal as="span" className="gradient-text" delay={1.1}>
-            {siteConfig.tagline}
-          </TextReveal>
-        </h1>
+          {siteConfig.title}
+        </motion.p>
+
+        <motion.h1
+          id="hero-heading"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-semibold tracking-tight leading-[1.08] max-w-4xl text-foreground"
+          initial={reducedMotion ? false : { opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.15, ease }}
+        >
+          {siteConfig.tagline}
+        </motion.h1>
 
         <motion.p
-          className="mt-8 text-lg md:text-xl text-muted reading-width leading-relaxed max-w-2xl"
-          initial={reducedMotion ? false : { opacity: 0, y: 20 }}
+          className="mt-6 text-base md:text-lg text-muted reading-width leading-relaxed"
+          initial={reducedMotion ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.4, ease: [0.25, 0.4, 0.25, 1] }}
+          transition={{ duration: 0.5, delay: 0.22, ease }}
         >
-          {siteConfig.title} building production-grade AI, full-stack, and
-          industrial systems—with domain experts from clinical imaging to the
-          plant floor. Prototype to scalable deployment, with measurable impact.
+          Building production-grade AI, full-stack products, and industrial
+          systems—alongside clinicians, process engineers, and operators. From
+          prototype to deployment, with measurable outcomes.
         </motion.p>
 
         <motion.div
-          className="mt-12 flex flex-wrap items-center gap-4"
-          initial={reducedMotion ? false : { opacity: 0, y: 20 }}
+          className="mt-9 flex flex-wrap items-center gap-3"
+          initial={reducedMotion ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.6, ease: [0.25, 0.4, 0.25, 1] }}
+          transition={{ duration: 0.5, delay: 0.28, ease }}
         >
-          <Button href="#projects" variant="primary" size="lg" magnetic>
-            View Projects
+          <Button href="#projects" variant="primary" size="lg">
+            View projects
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path
+                d="M3 8H13M13 8L9 4M13 8L9 12"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </Button>
-          <Button href={siteConfig.resume} variant="secondary" size="lg" external magnetic>
+          <Button href="#contact" variant="secondary" size="lg">
+            Get in touch
+          </Button>
+          <Button
+            href={siteConfig.resume}
+            variant="ghost"
+            size="lg"
+            external
+            className="text-muted-foreground"
+          >
             Resume
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M8 3V11M8 11L5 8M8 11L11 8M3 13H13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
           </Button>
         </motion.div>
 
-        <motion.div
-          className="mt-24 flex flex-wrap gap-x-8 gap-y-4 text-sm text-muted-foreground"
+        <motion.ul
+          className="mt-14 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground"
           initial={reducedMotion ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1.8 }}
+          transition={{ duration: 0.45, delay: 0.4 }}
           aria-label="Core expertise areas"
         >
           {[
             "Forward Deployed",
             "Computer Vision",
+            "Industrial AI",
             "PLC / HMI",
-            "RAG & LLMs",
-          ].map(
-            (skill) => (
-              <span key={skill} className="flex items-center gap-2">
-                <span className="w-1 h-1 rounded-full bg-accent/60" aria-hidden="true" />
-                {skill}
-              </span>
-            )
-          )}
-        </motion.div>
+            "Full-stack products",
+          ].map((skill) => (
+            <li key={skill} className="flex items-center gap-2">
+              <span
+                className="w-1 h-1 rounded-full bg-accent/70"
+                aria-hidden="true"
+              />
+              {skill}
+            </li>
+          ))}
+        </motion.ul>
       </div>
 
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:block"
         initial={reducedMotion ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2.2 }}
+        animate={{ opacity: 0.6 }}
+        transition={{ delay: 0.7 }}
         aria-hidden="true"
       >
         <motion.div
-          animate={reducedMotion ? {} : { y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          animate={reducedMotion ? {} : { y: [0, 6, 0] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-muted-foreground">
-            <path d="M12 5V19M12 19L6 13M12 19L18 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            className="text-muted-foreground"
+          >
+            <path
+              d="M12 5V19M12 19L6 13M12 19L18 13"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </motion.div>
       </motion.div>

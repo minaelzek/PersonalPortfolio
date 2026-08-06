@@ -32,10 +32,10 @@ export function Button({
 
   const variants = {
     primary:
-      "bg-accent text-white hover:bg-accent-light shadow-lg shadow-accent/20",
+      "bg-accent text-white hover:bg-accent-light shadow-md shadow-accent/25",
     secondary:
-      "bg-transparent text-foreground border border-border hover:border-border-hover hover:bg-white/[0.03]",
-    ghost: "bg-transparent text-muted hover:text-foreground",
+      "bg-transparent text-foreground border border-border hover:border-white/20 hover:bg-white/[0.04]",
+    ghost: "bg-transparent text-muted hover:text-foreground hover:bg-white/[0.03]",
   };
 
   const sizes = {

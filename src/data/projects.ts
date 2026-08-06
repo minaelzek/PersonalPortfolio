@@ -7,6 +7,8 @@ export interface ProjectData {
   id: string;
   slug: string;
   name: string;
+  /** Compact label for sticky project nav */
+  shortName: string;
   tagline: string;
   description: string;
   challenge: string;
@@ -19,6 +21,8 @@ export interface ProjectData {
   live?: string;
   accent: string;
   theme: "racing" | "sakura" | "ai" | "vision" | "industrial";
+  /** Visual emphasis — keep sparse so hierarchy stays clear */
+  featured?: boolean;
 }
 
 export const projects: ProjectData[] = [
@@ -26,6 +30,7 @@ export const projects: ProjectData[] = [
     id: "processmind",
     slug: "processmind-ai",
     name: "ProcessMind AI",
+    shortName: "ProcessMind",
     tagline: "Industrial process engineering copilot",
     description:
       "AI-powered predictive maintenance and multi-agent diagnostics for manufacturing—digital twin telemetry, ML risk scoring, RAG over SOPs, and human-in-the-loop engineer workflows.",
@@ -42,9 +47,9 @@ export const projects: ProjectData[] = [
     ],
     metrics: [
       { label: "Agents", value: "6" },
-      { label: "Telemetry", value: "1s streams" },
-      { label: "Assets", value: "10 twin" },
-      { label: "Stack", value: "ML + RAG" },
+      { label: "Telemetry", value: "1s" },
+      { label: "Twin assets", value: "10" },
+      { label: "Approach", value: "ML + RAG" },
     ],
     techStack: [
       "FastAPI",
@@ -59,11 +64,13 @@ export const projects: ProjectData[] = [
     ],
     accent: "#6366F1",
     theme: "ai",
+    featured: true,
   },
   {
     id: "polyp-detection",
     slug: "polyp-detection",
     name: "Polyp Detection AI",
+    shortName: "Polyp CV",
     tagline: "Clinical computer vision, production-ready",
     description:
       "Real-time computer vision system for polyp detection in medical imaging—owned from data collection through deployment, with close collaboration on clinical requirements.",
@@ -79,10 +86,10 @@ export const projects: ProjectData[] = [
       "End-to-end ownership reduced handoff risk between research and production",
     ],
     metrics: [
-      { label: "Detection accuracy", value: "94%" },
+      { label: "Accuracy", value: "94%" },
       { label: "Baseline", value: "50%" },
-      { label: "Pipeline", value: "End-to-end" },
-      { label: "Stack", value: "TensorFlow + CV" },
+      { label: "Pipeline", value: "E2E" },
+      { label: "Domain", value: "Clinical" },
     ],
     techStack: [
       "TensorFlow",
@@ -95,11 +102,13 @@ export const projects: ProjectData[] = [
     github: "https://github.com/minaelzek/colonoscopy-image-classification",
     accent: "#14B8A6",
     theme: "vision",
+    featured: true,
   },
   {
     id: "automation-fb",
     slug: "automation-fb",
     name: "PLC/HMI Automation",
+    shortName: "PLC/HMI",
     tagline: "Food & beverage process control",
     description:
       "PLC and HMI automation for high-volume food & beverage operations—mixproof valves, route control, and CIP in sanitary environments with regulatory compliance in mind.",
@@ -115,10 +124,10 @@ export const projects: ProjectData[] = [
       "HMI layouts prioritized operator clarity over feature density",
     ],
     metrics: [
-      { label: "Platform", value: "Allen-Bradley" },
-      { label: "Scope", value: "CIP + routing" },
-      { label: "HMI", value: "FactoryTalk View" },
-      { label: "Focus", value: "Compliance" },
+      { label: "Platform", value: "A-B" },
+      { label: "Scope", value: "CIP" },
+      { label: "HMI", value: "FT View" },
+      { label: "Focus", value: "Sanitary" },
     ],
     techStack: [
       "PLC Programming",
@@ -135,6 +144,7 @@ export const projects: ProjectData[] = [
     id: "undercut",
     slug: "undercut",
     name: "Undercut",
+    shortName: "Undercut",
     tagline: "Private-league F1 fantasy, live in production",
     description:
       "Full-stack Formula 1 fantasy platform for private leagues—championship and race-weekend picks, sprint sessions, bonus picks, live standings, Stripe billing, and continuous F1 data sync.",
@@ -150,10 +160,10 @@ export const projects: ProjectData[] = [
       "Playwright E2E, visual regression, and axe a11y in CI; Stripe Plus keeps ads and entitlements honest",
     ],
     metrics: [
-      { label: "Live", value: "playundercut.com" },
-      { label: "Data", value: "Live F1 sync" },
-      { label: "Auth", value: "Email + OAuth" },
-      { label: "Billing", value: "Stripe Plus" },
+      { label: "Status", value: "Live" },
+      { label: "Data", value: "F1 sync" },
+      { label: "Auth", value: "OAuth" },
+      { label: "Billing", value: "Stripe" },
     ],
     techStack: [
       "React",
@@ -170,11 +180,13 @@ export const projects: ProjectData[] = [
     github: "https://github.com/minaelzek/Undercut",
     accent: "#E10600",
     theme: "racing",
+    featured: true,
   },
   {
     id: "seed-journal",
     slug: "seed-journal",
     name: "Seed Journal",
+    shortName: "Seed Journal",
     tagline: "Encrypted reflection, living sakura",
     description:
       "Private web journaling ritual with a living sakura tree—passphrase-encrypted vault in the browser, deterministic reflection prompts, and growth that reacts to completed insights.",
@@ -185,15 +197,15 @@ export const projects: ProjectData[] = [
     architecture:
       "React/vinext UI → browser crypto vault (PBKDF2/AES-GCM) → Cloudflare D1 via Drizzle → growth engine + sakura illustration theater (R3F-capable stack).",
     decisions: [
-      "Zero-knowledge vault: entries encrypted with a user-held passphrase before leave the browser",
+      "Zero-knowledge vault: entries encrypted with a user-held passphrase before they leave the browser",
       "Deterministic local reflection prompts—no paid AI dependency for core ritual",
       "Tree growth and hanami leaps map reflection depth to procedural blossom behavior",
     ],
     metrics: [
-      { label: "Privacy", value: "Client crypto" },
-      { label: "Storage", value: "Cloudflare D1" },
-      { label: "Prompts", value: "On-device" },
-      { label: "Hero", value: "Living sakura" },
+      { label: "Privacy", value: "E2E" },
+      { label: "Storage", value: "D1" },
+      { label: "Prompts", value: "Local" },
+      { label: "Hero", value: "Sakura" },
     ],
     techStack: [
       "TypeScript",

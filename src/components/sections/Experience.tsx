@@ -23,60 +23,64 @@ export function Experience() {
             aria-hidden="true"
           />
 
-          <div className="space-y-12 md:space-y-16">
+          <div className="space-y-6 md:space-y-8">
             {experience.map((item, i) => (
               <motion.article
                 key={item.id}
-                className="relative pl-8 md:pl-20"
-                initial={reducedMotion ? false : { opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
+                className="relative pl-7 md:pl-16"
+                initial={reducedMotion ? false : { opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
                 transition={{
-                  duration: 0.5,
-                  delay: i * 0.1,
+                  duration: 0.45,
+                  delay: i * 0.06,
                   ease: [0.25, 0.4, 0.25, 1],
                 }}
               >
-                {/* Timeline marker */}
                 <div
-                  className="absolute left-0 md:left-8 top-2 -translate-x-1/2 w-3 h-3 rounded-full bg-accent border-2 border-background shadow-lg shadow-accent/30"
+                  className="absolute left-0 md:left-8 top-5 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-accent border-2 border-background shadow-md shadow-accent/25"
                   aria-hidden="true"
                 />
 
-                <div className="glass rounded-2xl p-6 md:p-8 transition-all duration-300 hover:border-white/12 hover:bg-white/[0.04]">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
-                    <div>
-                      <h3 className="text-xl font-semibold text-foreground">
+                <div className="glass rounded-xl p-5 md:p-6 transition-colors duration-200 hover:border-white/12 hover:bg-white/[0.04]">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+                    <div className="min-w-0">
+                      <h3 className="text-lg md:text-xl font-semibold text-foreground">
                         {item.role}
                       </h3>
-                      <p className="text-accent font-medium">{item.company}</p>
+                      <p className="text-accent font-medium text-sm md:text-base">
+                        {item.company}
+                      </p>
                     </div>
-                    <time className="text-sm text-muted-foreground font-mono">
+                    <time className="text-xs sm:text-sm text-muted-foreground font-mono shrink-0 sm:pt-1">
                       {item.period}
                     </time>
                   </div>
 
-                  <p className="text-muted leading-relaxed mb-6">
+                  <p className="text-sm md:text-base text-muted leading-relaxed mb-4">
                     {item.description}
                   </p>
 
-                  <ul className="space-y-2 mb-6" role="list">
+                  <ul className="space-y-2 mb-4" role="list">
                     {item.highlights.map((highlight) => (
                       <li
                         key={highlight}
-                        className="flex items-start gap-3 text-sm text-muted"
+                        className="flex items-start gap-2.5 text-sm text-muted"
                       >
-                        <span className="mt-2 w-1 h-1 rounded-full bg-accent shrink-0" aria-hidden="true" />
-                        {highlight}
+                        <span
+                          className="mt-2 w-1 h-1 rounded-full bg-accent shrink-0"
+                          aria-hidden="true"
+                        />
+                        <span className="min-w-0">{highlight}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5">
                     {item.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 text-xs font-mono rounded-full bg-white/[0.04] text-muted-foreground border border-border"
+                        className="px-2.5 py-1 text-xs font-mono rounded-md bg-white/[0.04] text-muted-foreground border border-border"
                       >
                         {tech}
                       </span>

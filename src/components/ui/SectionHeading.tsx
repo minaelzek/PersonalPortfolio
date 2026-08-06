@@ -23,26 +23,38 @@ export function SectionHeading({
   return (
     <div
       className={cn(
-        "mb-16 md:mb-20",
+        "mb-10 md:mb-14",
         align === "center" && "text-center mx-auto",
         className
       )}
     >
       <motion.div
-        initial={reducedMotion ? false : { opacity: 0, y: 20 }}
+        initial={reducedMotion ? false : { opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
       >
-        <span className="inline-flex items-center gap-3 text-sm font-medium tracking-widest uppercase text-accent mb-4">
-          <span className="w-8 h-px bg-accent" aria-hidden="true" />
+        <span
+          className={cn(
+            "inline-flex items-center gap-2.5 text-xs font-medium tracking-widest uppercase text-accent mb-3",
+            align === "center" && "justify-center"
+          )}
+        >
+          {align === "left" && (
+            <span className="w-6 h-px bg-accent" aria-hidden="true" />
+          )}
           {label}
         </span>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight gradient-text leading-[1.1]">
+        <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-semibold tracking-tight text-foreground leading-[1.15]">
           {title}
         </h2>
         {description && (
-          <p className="mt-6 text-lg text-muted reading-width leading-relaxed">
+          <p
+            className={cn(
+              "mt-4 text-base md:text-lg text-muted leading-relaxed",
+              align === "center" ? "max-w-2xl mx-auto" : "reading-width"
+            )}
+          >
             {description}
           </p>
         )}

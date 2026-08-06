@@ -42,7 +42,7 @@ const principles = [
   {
     title: "AI & Industrial Automation",
     description:
-      "Predictive maintenance agents, clinical computer vision, RAG over SOPs, RLHF evaluation, and plant-floor PLC/HMI—one engineer spanning software and operations.",
+      "Multi-agent maintenance, clinical CV, RAG over SOPs, RLHF, and PLC/HMI—software through the plant floor.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5" />
@@ -64,44 +64,42 @@ export function About() {
           description="Forward Deployed Engineer focused on taking solutions from prototype to scalable production—working directly with domain experts to deliver measurable impact."
         />
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
           <motion.div
-            initial={reducedMotion ? false : { opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
+            initial={reducedMotion ? false : { opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
           >
-            <p className="text-lg text-muted leading-relaxed mb-6">
-              My experience spans AI systems, full-stack development, and
-              industrial automation. I take technical solutions from prototype to
-              production while staying close to the people who run and depend on
-              them every day.
+            <p className="text-base md:text-lg text-muted leading-relaxed mb-5">
+              My work spans AI systems, full-stack products, and industrial
+              automation. I take solutions from prototype to production while
+              staying close to the people who run them every day.
             </p>
-            <p className="text-lg text-muted leading-relaxed mb-6">
-              I&apos;ve productionized a computer vision platform that improved
-              polyp detection from 50% to 94%, deployed PLC/HMI automation for
-              high-volume food &amp; beverage operations, and independently ship
-              products end-to-end—ProcessMind AI (multi-agent industrial
-              maintenance), Undercut (live F1 fantasy at playundercut.com), and
-              Seed Journal (encrypted reflection with a living sakura tree).
+            <p className="text-base md:text-lg text-muted leading-relaxed mb-5">
+              Highlights include clinical computer vision (50%→94% detection),
+              food &amp; beverage PLC/HMI deployments, ProcessMind AI
+              multi-agent maintenance, Undercut at playundercut.com, and Seed
+              Journal&apos;s encrypted reflection vault.
             </p>
-            <p className="text-lg text-foreground leading-relaxed">
-              I combine deep technical ownership with stakeholder collaboration to
-              turn complex systems into practical, high-impact solutions.
+            <p className="text-base md:text-lg text-foreground leading-relaxed">
+              Deep technical ownership plus stakeholder collaboration—so complex
+              systems become practical, high-impact tools.
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-2 gap-3">
             {principles.map((principle, i) => (
-              <GlassCard key={principle.title} className="!p-5">
+              <GlassCard key={principle.title} className="!p-4 md:!p-5 h-full" hover={false}>
                 <motion.div
-                  initial={reducedMotion ? false : { opacity: 0, y: 20 }}
+                  initial={reducedMotion ? false : { opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  transition={{ duration: 0.4, delay: i * 0.05 }}
+                  className="h-full"
                 >
-                  <div className="text-accent mb-4">{principle.icon}</div>
-                  <h3 className="text-base font-semibold text-foreground mb-2">
+                  <div className="text-accent mb-3">{principle.icon}</div>
+                  <h3 className="text-sm font-semibold text-foreground mb-1.5">
                     {principle.title}
                   </h3>
                   <p className="text-sm text-muted leading-relaxed">

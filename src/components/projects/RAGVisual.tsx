@@ -68,14 +68,16 @@ export function RAGVisual({ className }: { className?: string }) {
       </div>
 
       <motion.div
-        className="absolute -bottom-4 -right-4 glass rounded-xl px-4 py-3 shadow-lg"
-        initial={reducedMotion ? {} : { opacity: 0, scale: 0.9 }}
+        className="absolute bottom-3 right-3 glass rounded-lg px-3 py-2 shadow-lg pointer-events-none"
+        initial={reducedMotion ? {} : { opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        transition={{ delay: 0.6 }}
+        transition={{ delay: 0.35 }}
       >
-        <p className="text-xs text-muted-foreground">Agents</p>
-        <p className="text-lg font-semibold text-[#6366F1] font-mono">6</p>
+        <p className="text-[10px] text-muted-foreground uppercase tracking-wide">
+          Agents
+        </p>
+        <p className="text-base font-semibold text-[#6366F1] font-mono">6</p>
       </motion.div>
     </div>
   );

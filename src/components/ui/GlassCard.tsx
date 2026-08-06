@@ -25,7 +25,7 @@ export function GlassCard({ children, className, hover = true }: GlassCardProps)
       transition={{ duration: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
       whileHover={
         hover && !reducedMotion
-          ? { y: -4, transition: { duration: 0.2 } }
+          ? { y: -2, transition: { duration: 0.2 } }
           : undefined
       }
     >
