@@ -12,9 +12,11 @@ export function RAGVisual({ className }: { className?: string }) {
         <div className="px-5 py-3 border-b border-border flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-[#6366F1]" />
-            <span className="text-sm font-semibold">RAG SOP Assistant</span>
+            <span className="text-sm font-semibold">ProcessMind AI</span>
           </div>
-          <span className="text-xs text-muted-foreground font-mono">Streamlit</span>
+          <span className="text-xs text-muted-foreground font-mono">
+            Multi-agent
+          </span>
         </div>
 
         <div className="p-5 md:p-6">
@@ -34,7 +36,7 @@ export function RAGVisual({ className }: { className?: string }) {
               </div>
               <div className="glass rounded-xl rounded-tl-sm px-4 py-3 flex-1">
                 <p className="text-sm text-foreground/90">
-                  What is the standard procedure for valve calibration?
+                  Why is Line A motor A-101 trending high risk?
                 </p>
               </div>
             </div>
@@ -45,11 +47,12 @@ export function RAGVisual({ className }: { className?: string }) {
               </div>
               <div className="glass rounded-xl rounded-tl-sm px-4 py-3 flex-1">
                 <p className="text-sm text-foreground/90 leading-relaxed">
-                  Valve calibration requires a 5-step process: isolate the valve,
-                  attach calibration equipment, apply test pressures...
+                  Vibration and current z-scores elevated for 18m. Isolation
+                  Forest flags anomaly; RUL model estimates 9 days. Similar
+                  incident matched in failure DB...
                 </p>
                 <div className="mt-3 flex flex-wrap gap-2">
-                  {["SOP-2847", "Section 4.2", "Page 12"].map((cite) => (
+                  {["RUL · 9d", "Anomaly", "SOP-PM-101"].map((cite) => (
                     <span
                       key={cite}
                       className="text-[10px] px-2 py-0.5 rounded bg-[#6366F1]/10 text-[#818CF8] font-mono"
@@ -71,8 +74,8 @@ export function RAGVisual({ className }: { className?: string }) {
         viewport={{ once: true }}
         transition={{ delay: 0.6 }}
       >
-        <p className="text-xs text-muted-foreground">Accuracy</p>
-        <p className="text-lg font-semibold text-[#6366F1] font-mono">94%</p>
+        <p className="text-xs text-muted-foreground">Agents</p>
+        <p className="text-lg font-semibold text-[#6366F1] font-mono">6</p>
       </motion.div>
     </div>
   );

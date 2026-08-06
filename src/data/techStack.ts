@@ -6,34 +6,36 @@ export interface TechCategory {
 export const techStack: TechCategory[] = [
   {
     name: "Languages",
-    items: ["Python", "TypeScript", "Dart", "SQL", "Structured Text", "Bash"],
+    items: ["Python", "TypeScript", "SQL", "Structured Text", "Bash"],
   },
   {
     name: "AI & ML",
     items: [
       "TensorFlow",
       "Computer Vision",
+      "LangGraph",
       "LangChain",
       "RAG",
+      "XGBoost",
       "LLMs",
       "RLHF",
-      "MLOps",
       "ChromaDB",
+      "Ollama",
     ],
   },
   {
     name: "Full Stack",
-    items: ["React", "Next.js", "Django", "Flutter", "REST APIs", "Streamlit"],
+    items: ["React", "Next.js", "Django", "FastAPI", "REST APIs", "WebSockets"],
   },
   {
     name: "Data",
     items: [
       "PostgreSQL",
+      "TimescaleDB",
       "Redis",
-      "ETL",
+      "Cloudflare D1",
       "Pandas",
-      "Statistical Analysis",
-      "Power BI",
+      "ETL",
     ],
   },
   {
@@ -43,12 +45,20 @@ export const techStack: TechCategory[] = [
       "Allen-Bradley",
       "HMI / FactoryTalk",
       "SCADA",
+      "MQTT / OPC-UA",
       "CIP Automation",
     ],
   },
   {
     name: "Platform",
-    items: ["Docker", "Celery", "Gunicorn", "Nginx", "Git", "DevOps"],
+    items: [
+      "Docker",
+      "Railway",
+      "Cloudflare Workers",
+      "Stripe",
+      "Git",
+      "CI / Playwright",
+    ],
   },
   {
     name: "Practices",
@@ -56,7 +66,7 @@ export const techStack: TechCategory[] = [
       "Clean Architecture",
       "Model Evaluation",
       "Prompt Engineering",
-      "System Validation",
+      "Human-in-the-loop AI",
       "Stakeholder Collaboration",
     ],
   },

@@ -34,7 +34,11 @@ function ProjectVisual({ project }: { project: ProjectData }) {
 export function ProjectSection({ project, index }: ProjectSectionProps) {
   const reducedMotion = useReducedMotion();
   const isReversed = index % 2 === 1;
-  const isFeatured = project.id === "polyp-detection" || project.theme === "sakura";
+  const isFeatured =
+    project.id === "processmind" ||
+    project.id === "polyp-detection" ||
+    project.id === "undercut" ||
+    project.theme === "sakura";
 
   return (
     <article

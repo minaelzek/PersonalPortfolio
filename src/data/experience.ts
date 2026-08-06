@@ -41,14 +41,15 @@ export const experience: ExperienceItem[] = [
     highlights: [
       "Productionized a computer vision platform improving polyp detection from 50% to 94% in clinical environments",
       "Designed and deployed PLC/HMI automation for high-volume food & beverage operations",
-      "Shipped full-stack and AI-powered applications end-to-end—from architecture through deployment",
+      "Shipped production products end-to-end—ProcessMind AI (industrial multi-agent), Undercut (live F1 fantasy), and Seed Journal",
     ],
     technologies: [
       "TensorFlow",
-      "Flutter",
+      "LangGraph",
       "PostgreSQL",
+      "Django",
+      "FastAPI",
       "Docker",
-      "LangChain",
       "PLC / HMI",
       "Full-Stack Development",
     ],

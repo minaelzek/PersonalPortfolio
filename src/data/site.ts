@@ -4,7 +4,7 @@ export const siteConfig = {
   title: "Forward Deployed Engineer",
   tagline: "From prototype to production—with the people who use it.",
   description:
-    "Forward Deployed Engineer building production-grade AI, full-stack, and industrial automation systems. Computer vision (50%→94% detection accuracy), PLC/HMI deployments, and scalable platforms—Greater Toronto Area.",
+    "Forward Deployed Engineer building production-grade AI, full-stack, and industrial automation systems. ProcessMind multi-agent maintenance, clinical computer vision (50%→94%), PLC/HMI deployments, and live products like Undercut—Greater Toronto Area.",
   url: "https://minaelzek.vercel.app",
   email: "minaaelzik@gmail.com",
   github: "https://github.com/minaelzek",

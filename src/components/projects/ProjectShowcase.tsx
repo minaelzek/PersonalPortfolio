@@ -39,7 +39,7 @@ export function ProjectShowcase() {
         <SectionHeading
           label="Projects"
           title="Products I've shipped"
-          description="Clinical computer vision, food & beverage automation, F1 fantasy infrastructure, Flutter + AI journaling, and RAG for process engineers."
+          description="Industrial multi-agent AI, clinical computer vision, food & beverage PLC/HMI, live F1 fantasy, and privacy-first journaling."
         />
       </div>
 

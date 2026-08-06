@@ -19,7 +19,7 @@ export function PodiumPicksVisual({ className }: { className?: string }) {
         <div className="flex items-center justify-between px-5 py-3 border-b border-border">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-accent" />
-            <span className="text-sm font-semibold tracking-tight">PodiumPicks</span>
+            <span className="text-sm font-semibold tracking-tight">Undercut</span>
           </div>
           <span className="text-xs text-muted-foreground font-mono">2026 Season</span>
         </div>

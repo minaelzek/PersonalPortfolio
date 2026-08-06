@@ -42,7 +42,7 @@ const principles = [
   {
     title: "AI & Industrial Automation",
     description:
-      "Computer vision, RAG over SOPs, RLHF evaluation, and plant-floor control—one engineer spanning software and operations.",
+      "Predictive maintenance agents, clinical computer vision, RAG over SOPs, RLHF evaluation, and plant-floor PLC/HMI—one engineer spanning software and operations.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5" />
@@ -81,9 +81,9 @@ export function About() {
               I&apos;ve productionized a computer vision platform that improved
               polyp detection from 50% to 94%, deployed PLC/HMI automation for
               high-volume food &amp; beverage operations, and independently ship
-              full-stack and AI-powered applications—including a production F1
-              fantasy stack, a Flutter app with custom AI-driven systems, and a
-              RAG-based SOP assistant for process engineers.
+              products end-to-end—ProcessMind AI (multi-agent industrial
+              maintenance), Undercut (live F1 fantasy at playundercut.com), and
+              Seed Journal (encrypted reflection with a living sakura tree).
             </p>
             <p className="text-lg text-foreground leading-relaxed">
               I combine deep technical ownership with stakeholder collaboration to
