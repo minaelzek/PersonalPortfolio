@@ -26,8 +26,13 @@ export const navLinks = [
 
 /** Hero proof strip — what a recruiter should see in 5 seconds */
 export const heroProof = [
+  {
+    value: "Live",
+    label: "Undercut in production",
+    detail: "playundercut.com",
+    href: "https://playundercut.com",
+  },
   { value: "94%", label: "Clinical CV accuracy", detail: "from 50% baseline" },
-  { value: "Live", label: "Shipped product", detail: "playundercut.com" },
   { value: "FDE", label: "Plant + clinic + software", detail: "stakeholder-facing" },
   { value: "GTA", label: "Based in Canada", detail: "hybrid / on-site" },
 ];

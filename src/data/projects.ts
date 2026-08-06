@@ -7,7 +7,7 @@ export interface ProjectData {
   id: string;
   slug: string;
   name: string;
-  /** Compact label for sticky project nav */
+  /** Compact label for work index */
   shortName: string;
   tagline: string;
   description: string;
@@ -17,15 +17,57 @@ export interface ProjectData {
   decisions: string[];
   metrics: ProjectMetric[];
   techStack: string[];
+  /** Only public, working URLs — omit private repos */
   github?: string;
   live?: string;
   accent: string;
   theme: "racing" | "sakura" | "ai" | "vision" | "industrial";
-  /** Visual emphasis — keep sparse so hierarchy stays clear */
   featured?: boolean;
 }
 
 export const projects: ProjectData[] = [
+  {
+    id: "undercut",
+    slug: "undercut",
+    name: "Undercut",
+    shortName: "Undercut",
+    tagline: "Private-league F1 fantasy, live in production",
+    description:
+      "Full-stack Formula 1 fantasy platform for private leagues—championship and race-weekend picks, sprint sessions, bonus picks, live standings, Stripe billing, and continuous F1 data sync.",
+    challenge:
+      "Friend groups need consistent scoring, always-current race data, and a polished race-weekend UX without treating fantasy as a public gambling product—or blocking deploys on flaky external APIs.",
+    solution:
+      "Shipped React/Vite + Django REST with PostgreSQL and Redis, Cloudflare Worker SPA at playundercut.com, Railway API + f1-data-sync workers, async scoring paths, and Stripe as the entitlement source of truth.",
+    architecture:
+      "Cloudflare Worker SPA → Django DRF API (Railway) → PostgreSQL + Redis → f1-data-sync (Jolpica / OpenF1 / weather) → Stripe webhooks for Plus → Google/Apple/email auth.",
+    decisions: [
+      "Private leagues with invite codes—product scoped for friend groups, not public gambling",
+      "Live F1 calendar, results, and standings via dedicated sync service so the app stays current mid-season",
+      "Playwright E2E, visual regression, and axe a11y in CI; Stripe Plus keeps ads and entitlements honest",
+    ],
+    metrics: [
+      { label: "Status", value: "Live" },
+      { label: "Data", value: "F1 sync" },
+      { label: "Auth", value: "OAuth" },
+      { label: "Billing", value: "Stripe" },
+    ],
+    techStack: [
+      "React",
+      "TypeScript",
+      "Django REST",
+      "PostgreSQL",
+      "Redis",
+      "Cloudflare Workers",
+      "Railway",
+      "Stripe",
+      "Playwright",
+    ],
+    live: "https://playundercut.com",
+    // GitHub repo is private — do not link (404 for visitors)
+    accent: "#E10600",
+    theme: "racing",
+    featured: true,
+  },
   {
     id: "processmind",
     slug: "processmind-ai",
@@ -139,48 +181,6 @@ export const projects: ProjectData[] = [
     ],
     accent: "#F59E0B",
     theme: "industrial",
-  },
-  {
-    id: "undercut",
-    slug: "undercut",
-    name: "Undercut",
-    shortName: "Undercut",
-    tagline: "Private-league F1 fantasy, live in production",
-    description:
-      "Full-stack Formula 1 fantasy platform for private leagues—championship and race-weekend picks, sprint sessions, bonus picks, live standings, Stripe billing, and continuous F1 data sync.",
-    challenge:
-      "Friend groups need consistent scoring, always-current race data, and a polished race-weekend UX without treating fantasy as a public gambling product—or blocking deploys on flaky external APIs.",
-    solution:
-      "Shipped React/Vite + Django REST with PostgreSQL and Redis, Cloudflare Worker SPA at playundercut.com, Railway API + f1-data-sync workers, Celery-style async scoring paths, and Stripe as the entitlement source of truth.",
-    architecture:
-      "Cloudflare Worker SPA → Django DRF API (Railway) → PostgreSQL + Redis → f1-data-sync (Jolpica / OpenF1 / weather) → Stripe webhooks for Plus → Google/Apple/email auth.",
-    decisions: [
-      "Private leagues with invite codes—product scoped for friend groups, not public gambling",
-      "Live F1 calendar, results, and standings via dedicated sync service so the app stays current mid-season",
-      "Playwright E2E, visual regression, and axe a11y in CI; Stripe Plus keeps ads and entitlements honest",
-    ],
-    metrics: [
-      { label: "Status", value: "Live" },
-      { label: "Data", value: "F1 sync" },
-      { label: "Auth", value: "OAuth" },
-      { label: "Billing", value: "Stripe" },
-    ],
-    techStack: [
-      "React",
-      "TypeScript",
-      "Django REST",
-      "PostgreSQL",
-      "Redis",
-      "Cloudflare Workers",
-      "Railway",
-      "Stripe",
-      "Playwright",
-    ],
-    live: "https://playundercut.com",
-    github: "https://github.com/minaelzek/Undercut",
-    accent: "#E10600",
-    theme: "racing",
-    featured: true,
   },
   {
     id: "seed-journal",

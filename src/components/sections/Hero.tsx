@@ -98,21 +98,48 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: 0.22, ease }}
         >
-          {heroProof.map((item) => (
-            <div
-              key={item.label}
-              className="rounded-xl border border-border bg-white/[0.025] px-4 py-3.5"
-            >
-              <dt className="sr-only">{item.label}</dt>
-              <dd>
+          {heroProof.map((item) => {
+            const inner = (
+              <>
                 <p className="text-xl md:text-2xl font-semibold font-mono text-foreground tracking-tight">
                   {item.value}
                 </p>
                 <p className="mt-1 text-sm text-muted leading-snug">{item.label}</p>
-                <p className="text-xs text-muted-foreground mt-0.5">{item.detail}</p>
-              </dd>
-            </div>
-          ))}
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  {"href" in item && item.href ? (
+                    <span className="underline decoration-white/20 underline-offset-2 group-hover:decoration-accent group-hover:text-accent transition-colors">
+                      {item.detail}
+                    </span>
+                  ) : (
+                    item.detail
+                  )}
+                </p>
+              </>
+            );
+
+            const shellClass =
+              "rounded-xl border border-border bg-white/[0.025] px-4 py-3.5 block h-full";
+
+            return (
+              <div key={item.label}>
+                <dt className="sr-only">{item.label}</dt>
+                <dd>
+                  {"href" in item && item.href ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${shellClass} group transition-colors hover:border-white/15 hover:bg-white/[0.04]`}
+                    >
+                      {inner}
+                    </a>
+                  ) : (
+                    <div className={shellClass}>{inner}</div>
+                  )}
+                </dd>
+              </div>
+            );
+          })}
         </motion.dl>
       </div>
     </section>

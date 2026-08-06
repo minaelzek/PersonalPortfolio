@@ -11,8 +11,34 @@ interface ButtonProps {
   size?: "sm" | "md" | "lg";
   className?: string;
   onClick?: () => void;
+  /** Force new-tab external link. Auto-detected for http(s) when omitted. */
   external?: boolean;
   magnetic?: boolean;
+}
+
+function isExternalHref(href: string) {
+  return (
+    href.startsWith("http://") ||
+    href.startsWith("https://") ||
+    href.startsWith("//")
+  );
+}
+
+/** Files and absolute paths that should open as a plain browser navigation */
+function isFileHref(href: string) {
+  return /\.(pdf|png|jpe?g|webp|zip|csv)(\?.*)?$/i.test(href);
+}
+
+function isSpecialHref(href: string) {
+  return (
+    href.startsWith("mailto:") ||
+    href.startsWith("tel:") ||
+    href.startsWith("sms:")
+  );
+}
+
+function isHashHref(href: string) {
+  return href.startsWith("#");
 }
 
 export function Button({
@@ -35,7 +61,8 @@ export function Button({
       "bg-accent text-white hover:bg-accent-light shadow-md shadow-accent/25",
     secondary:
       "bg-transparent text-foreground border border-border hover:border-white/20 hover:bg-white/[0.04]",
-    ghost: "bg-transparent text-muted hover:text-foreground hover:bg-white/[0.03]",
+    ghost:
+      "bg-transparent text-muted hover:text-foreground hover:bg-white/[0.03]",
   };
 
   const sizes = {
@@ -58,28 +85,39 @@ export function Button({
     </>
   );
 
-  const motionProps = magnetic && !reducedMotion
-    ? {
-        whileHover: { scale: 1.02 },
-        whileTap: { scale: 0.98 },
-        transition: { type: "spring" as const, stiffness: 400, damping: 25 },
-      }
-    : {};
+  const motionProps =
+    magnetic && !reducedMotion
+      ? {
+          whileHover: { scale: 1.02 },
+          whileTap: { scale: 0.98 },
+          transition: { type: "spring" as const, stiffness: 400, damping: 25 },
+        }
+      : {};
 
   if (href) {
-    if (external) {
+    const openExternal =
+      external === true ||
+      (external !== false && (isExternalHref(href) || isFileHref(href)));
+    const usePlainAnchor =
+      openExternal || isSpecialHref(href) || isHashHref(href) || isFileHref(href);
+
+    if (usePlainAnchor) {
       return (
         <motion.a
           href={href}
-          target="_blank"
-          rel="noopener noreferrer"
           className={classes}
+          onClick={onClick}
+          {...(openExternal
+            ? { target: "_blank", rel: "noopener noreferrer" }
+            : {})}
           {...motionProps}
         >
           {content}
         </motion.a>
       );
     }
+
+    // In-app routes only (e.g. /about) — not hash / mailto / external
     return (
       <motion.div {...motionProps} className="inline-block">
         <Link href={href} className={classes} onClick={onClick}>

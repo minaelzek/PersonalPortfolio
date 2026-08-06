@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import Link from "next/link";
 import { navLinks, siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
 
@@ -118,14 +117,14 @@ export function Navigation() {
             className="container-width flex h-14 md:h-16 items-center justify-between gap-4"
             aria-label="Main navigation"
           >
-            <Link
+            <a
               href="#main-content"
               className="text-sm font-semibold tracking-tight text-foreground hover:text-accent transition-colors shrink-0"
               onClick={closeMobile}
             >
               {siteConfig.fullName}
               <span className="text-accent">.</span>
-            </Link>
+            </a>
 
             <ul
               className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2"
