@@ -21,8 +21,10 @@ export interface ProjectData {
   github?: string;
   live?: string;
   accent: string;
-  theme: "racing" | "sakura" | "ai" | "vision" | "industrial";
+  theme: "racing" | "sakura" | "ai" | "vision" | "industrial" | "policy" | "servicing";
   featured?: boolean;
+  /** Personal practice. Not a shipped product and not professional employment. */
+  practice?: boolean;
 }
 
 export const projects: ProjectData[] = [
@@ -220,5 +222,74 @@ export const projects: ProjectData[] = [
     github: "https://github.com/minaelzek/SeedJournal1.0",
     accent: "#F4A7B9",
     theme: "sakura",
+  },
+  {
+    id: "policy-servicing",
+    slug: "policy-servicing-desk",
+    name: "Policy Servicing Desk",
+    shortName: "Servicing Desk",
+    tagline: "Personal ASP.NET practice: REST, SOAP, and SQL Server",
+    description:
+      "A practice Web API for policy servicing. It stores coverages, status history, premiums, and reversals, and answers a narrow SOAP status read. Seventeen tests run against SQL Server. Personal practice from October 2026, kept local.",
+    challenge:
+      "A status change, a premium, and a reversal each have to be safe to retry. If the history insert fails, the policy status has to stay where it was. A SOAP caller should receive only the status fields.",
+    solution:
+      "Writes require a clerk API key. Status and history commit in one transaction. The same idempotency key and body replay the original response. The same key with a different body returns 409. A reversal adds a negative premium row and leaves the original payment in place, once per payment.",
+    architecture:
+      "ASP.NET Core 8 REST → EF Core → SQL Server tables for policies, coverages, status history, premiums, and idempotency keys. CoreWCF SOAP returns policy number, status, and holder name. A later migration backfills ProductCode to LIFE.",
+    decisions: [
+      "Replay is checked before the domain rules, so retrying a reversal does not subtract the amount twice",
+      "Balance is the sum of premium amounts, so the negative reversal brings it back to zero",
+      "The SOAP contract stayed three fields after ProductCode was added",
+      "Clerk key and database password stay in local development settings",
+    ],
+    metrics: [
+      { label: "Tests", value: "17" },
+      { label: "Tables", value: "5" },
+      { label: "APIs", value: "REST + SOAP" },
+      { label: "Scope", value: "Practice" },
+    ],
+    techStack: [
+      "C#",
+      "ASP.NET Core",
+      "EF Core",
+      "SQL Server",
+      "CoreWCF",
+      "xUnit",
+      "Docker",
+    ],
+    accent: "#C084FC",
+    theme: "servicing",
+    practice: true,
+  },
+  {
+    id: "policy-status",
+    slug: "policy-status-api",
+    name: "Policy Status API",
+    shortName: "Policy Status",
+    tagline: "Personal ASP.NET Core practice against SQL Server",
+    description:
+      "A small Web API that creates a policy and moves it through a fixed status machine. Built to learn ASP.NET Core 8, Entity Framework Core, and SQL Server, with tests against a real database. Personal practice from October 2026, kept local.",
+    challenge:
+      "Learn the request path, the table, and a failing case that can be reproduced before the code changes. A pending policy must not jump straight to closed.",
+    solution:
+      "Controllers call a status-rules type and persist through EF Core. Pending can become Active. Active or Suspended can close or move between those two. Closed is terminal. An illegal move returns 409 and leaves the row unchanged.",
+    architecture:
+      "ASP.NET Core 8 controllers → policy service → EF Core → one SQL Server Policies table. xUnit and WebApplicationFactory run against SQL Server in Docker.",
+    decisions: [
+      "Status values are names. A numeric label such as \"0\" is rejected",
+      "An illegal transition does not change the stored timestamp",
+      "Tests use a SQL Server container rather than an in-memory stand-in",
+    ],
+    metrics: [
+      { label: "Tests", value: "11" },
+      { label: "Tables", value: "1" },
+      { label: "Runtime", value: ".NET 8" },
+      { label: "Scope", value: "Practice" },
+    ],
+    techStack: ["C#", "ASP.NET Core", "EF Core", "SQL Server", "xUnit", "Docker"],
+    accent: "#38BDF8",
+    theme: "policy",
+    practice: true,
   },
 ];

@@ -13,7 +13,7 @@ export function TechStack() {
         <SectionHeading
           label="Stack"
           title="Tools I reach for"
-          description="Tools across AI/ML, full-stack, data engineering, and industrial automation—aligned to production deployment, not toy demos."
+          description="Production tools across AI/ML, full-stack, data, and industrial automation. C#, ASP.NET Core, and SQL Server are personal practice."
           align="center"
         />
 

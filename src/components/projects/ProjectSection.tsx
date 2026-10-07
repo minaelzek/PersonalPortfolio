@@ -9,6 +9,8 @@ import { SeedJournalVisual } from "./SeedJournalVisual";
 import { RAGVisual } from "./RAGVisual";
 import { PolypDetectionVisual } from "./PolypDetectionVisual";
 import { IndustrialVisual } from "./IndustrialVisual";
+import { PolicyStatusVisual } from "./PolicyStatusVisual";
+import { PolicyServicingVisual } from "./PolicyServicingVisual";
 import { cn } from "@/lib/utils";
 
 interface ProjectSectionProps {
@@ -28,6 +30,10 @@ function ProjectVisual({ project }: { project: ProjectData }) {
       return <PolypDetectionVisual />;
     case "industrial":
       return <IndustrialVisual />;
+    case "policy":
+      return <PolicyStatusVisual />;
+    case "servicing":
+      return <PolicyServicingVisual />;
     default:
       return null;
   }
@@ -90,6 +96,11 @@ export function ProjectSection({ project, index }: ProjectSectionProps) {
                 }}
               >
                 Featured
+              </span>
+            )}
+            {project.practice && (
+              <span className="text-[10px] font-medium uppercase tracking-wider px-2 py-0.5 rounded-full border border-sky-400/30 bg-sky-400/10 text-sky-300">
+                Practice
               </span>
             )}
           </div>

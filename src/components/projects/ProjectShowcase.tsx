@@ -24,7 +24,7 @@ export function ProjectShowcase() {
         <SectionHeading
           label="Selected work"
           title="Products and systems I've shipped"
-          description="Clinical CV, industrial multi-agent AI, plant-floor automation, and consumer products in production. Pick a case study or scroll for the full story."
+          description="Clinical CV, industrial multi-agent AI, plant-floor automation, and consumer products in production. The last two case studies are personal ASP.NET Core and SQL Server practice from October 2026."
         />
 
         {/* Work index — replaces sticky project pills */}
@@ -67,6 +67,11 @@ export function ProjectShowcase() {
                   {project.live && (
                     <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
                       Live
+                    </span>
+                  )}
+                  {project.practice && (
+                    <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-sky-400/10 text-sky-300 border border-sky-400/25">
+                      Practice
                     </span>
                   )}
                 </div>

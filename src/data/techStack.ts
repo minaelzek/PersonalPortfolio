@@ -6,7 +6,7 @@ export interface TechCategory {
 export const techStack: TechCategory[] = [
   {
     name: "Languages",
-    items: ["Python", "TypeScript", "SQL", "Structured Text", "Bash"],
+    items: ["Python", "TypeScript", "C#", "SQL", "Structured Text", "Bash"],
   },
   {
     name: "AI & ML",
@@ -25,12 +25,13 @@ export const techStack: TechCategory[] = [
   },
   {
     name: "Full Stack",
-    items: ["React", "Next.js", "Django", "FastAPI", "REST APIs", "WebSockets"],
+    items: ["React", "Next.js", "Django", "FastAPI", "ASP.NET Core", "REST APIs", "WebSockets"],
   },
   {
     name: "Data",
     items: [
       "PostgreSQL",
+      "SQL Server",
       "TimescaleDB",
       "Redis",
       "Cloudflare D1",
